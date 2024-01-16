@@ -17,6 +17,7 @@ export DEBIAN_FRONTEND=noninteractive
 
   dpkg-reconfigure -f noninteractive tzdata \
   && apt-get update \
+  && apt-get upgrade -yq \
   && apt-get install -yq \
       apt-transport-https \
       apt-utils \
