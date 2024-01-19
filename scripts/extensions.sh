@@ -14,6 +14,7 @@ export extensions=" \
     pdo_pgsql \
     pgsql \
     soap \
+    xmlrpc \
     xsl \
     zip
     "
@@ -74,6 +75,18 @@ cd /usr/local/src \
   && rm -rf imagick \
   && docker-php-ext-enable imagick
 
+#XMLRPC
+mkdir /usr/local/src/xmlrpc \
+  && cd /usr/local/src/xmlrpc \
+  && curl -L https://pecl.php.net/get/xmlrpc-1.0.0RC1.tgz | tar -xzC /usr/local/src/xmlrpc --strip-components=1 \
+  && phpize \
+  && ./configure \
+  && make \
+  && make install \
+  && cd .. \
+  && rm -rf xmlrpc \
+  && docker-php-ext-enable xmlrpc
+
 
 { \
     echo 'opcache.enable=1'; \
@@ -100,5 +113,3 @@ cd /usr/local/src \
 
 echo 'memory_limit=1024M' > /usr/local/etc/php/conf.d/zz-conf.ini
 echo 'xdebug.mode=coverage' > /usr/local/etc/php/conf.d/20-xdebug.ini
-
-apt-get purge -yqq --auto-remove $buildDeps

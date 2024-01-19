@@ -15,7 +15,7 @@ echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
 echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf
 export DEBIAN_FRONTEND=noninteractive
 
-  dpkg-reconfigure -f noninteractive tzdata \
+dpkg-reconfigure -f noninteractive tzdata \
   && apt-get update \
   && apt-get upgrade -yq \
   && apt-get install -yq \
